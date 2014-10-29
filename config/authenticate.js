@@ -23,4 +23,18 @@ module.exports = function(){
     passport.deserializeUser(function(username, done){
         done(null, user);
     })
+};
+
+module.exports.isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }else{
+        res.redirect('/');
+    }
 }
+
+module.exports.authenticate = passport.authenticate('local', {
+                                successRedirect: '/',
+                                failureRedirect: '/',
+                                failureFlash: true
+                            });
