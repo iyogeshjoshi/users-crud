@@ -8,5 +8,9 @@ module.exports = {
         }else{
             res.render('index', { title: 'Express' });
         }
+    },
+    logout: function(req, res){
+        req.session.destroy();
+        res.redirect('/');
     }
 };

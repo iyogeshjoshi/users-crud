@@ -13,7 +13,8 @@ module.exports = function(app, passport){
     //app.get('/login', routes);
     app.get('/login', routes.index);
     app.get('/users', users.index);
-    app.post('/login',authenticate );
+    app.post('/login', authenticate );
+    app.get('/logout', routes.logout)
     // check isAuthenticated before each route which require
     // authentication
     app.use('/home', isAuthenticated, home.index);
