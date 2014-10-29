@@ -8,8 +8,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var router = require('./routes/routes');
 
 var app = express();
 
@@ -32,16 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // passport authentication
 var Auth = require('./config/authenticate')();
-// As with any middleware it is quintessential to call next()
-// if the user is authenticated
-var isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-}
 
 // define routes
-
+router(app, passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
