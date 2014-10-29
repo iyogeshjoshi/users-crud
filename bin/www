@@ -3,10 +3,10 @@ var debug = require('debug')('users-crud');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);
-app.set('host', '192.168.1.19' || 'localhost' );
+app.set('host', process.env.HOST || 'localhost' );
 app.set('env',process.env.NODE_ENV || 'developement');
 
-var server = app.listen(app.get('port'),app.get('host'), function() {
-  debug('Express server listening on port ' + server.address().port);
-  console.log('Express server listening on port ' + server.address().port);
+var server = app.listen(app.get('port'), app.get('host'), function() {
+  debug('Express server listening on host ' + app.get('host') + ' port ' + server.address().port);
+  console.log('Express server listening on host ' + app.get('host') + ' port ' + server.address().port);
 });
